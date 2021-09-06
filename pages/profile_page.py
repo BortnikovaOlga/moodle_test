@@ -118,7 +118,7 @@ class ProfilePage(BasePage):
     def load_user_picture(self):
         path_file = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            "models\\logo.jpg",
+            os.path.join("models", "logo.jpg"),
         )
         self.input_picture(path_file)
         self.submit_changes()
