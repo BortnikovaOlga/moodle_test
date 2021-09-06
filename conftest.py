@@ -15,9 +15,10 @@ def app(request):
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # , chrome_options=chrome_options
     fix_app = Application(
-        webdriver.Chrome(ChromeDriverManager().install()),
+        webdriver.Chrome(
+            ChromeDriverManager().install(), chrome_options=chrome_options
+        ),
         base_url,
-        chrome_options=chrome_options,
     )
     yield fix_app
     fix_app.quit()
