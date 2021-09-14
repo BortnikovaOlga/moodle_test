@@ -14,7 +14,7 @@ class BasePage:
         )
         return element
 
-    def find_element_clickable(self, locator, wait_time=10):
+    def find_element_clickable(self, locator, wait_time=13):
         return WebDriverWait(self.app.driver, wait_time).until(
             EC.element_to_be_clickable(locator),
             message=f"Can't find element by locator {locator}",

@@ -14,7 +14,6 @@ class TestPersonalData:
         5. Edit basic personal data with valid data
         6. Check successfully editing
         """
-        # assert app.login_page.is_auth(), "You are not auth" переехал в фикстуру ?
         app.nav_bar.open_profile_page()
         app.profile_page.edit_general_personal_data()
         assert app.profile_page.is_changed(), "Personal data not changed!"
