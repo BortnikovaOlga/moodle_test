@@ -28,7 +28,11 @@ class CoursePage(BasePage):
         self.input_full_name(course.full_name)
         self.input_short_name(course.short_name)
         self.submit_changes()
+        return course.full_name
 
-    def is_add_course(self):
-        """Заглушка."""
-        return True
+    def is_add_course(self, full_name):
+        return self.is_find_course_header(full_name)
+
+    def is_find_course_header(self, full_name):
+        course_header = self.find_elements(CoursePageLocators.COURSE_HEADER)
+        return not (len(course_header) == 0 or course_header[0].text != full_name)
