@@ -1,4 +1,6 @@
+import logging.config
 import pytest
+import allure
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -8,18 +10,32 @@ from webdriver_manager.chrome import ChromeDriverManager
 from models.auth_data import AuthData
 from pages.application import Application
 
+from log_settings import LOGGING_CONFIG
 
+logging.config.dictConfig(LOGGING_CONFIG)
+logger = logging.getLogger("moodle")
+
+
+@allure.step("открыть главную страницу")
 @pytest.fixture(scope="session")
 def app(request):
     base_url = request.config.getoption("--base-url")
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # , chrome_options=chrome_options
-    fix_app = Application(
-        webdriver.Chrome(
-            ChromeDriverManager().install(), chrome_options=chrome_options
-        ),
-        base_url,
-    )
+    headless_mode = request.config.getoption("--headless").lower()
+    logger.info(f"Start moodle {base_url} with headless={headless_mode} mode")
+    if headless_mode == "true":
+        chrome_options = Options()
+        chrome_options.headless = True
+        fix_app = Application(
+            webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options),
+            base_url,
+        )
+    elif headless_mode == "false":
+        fix_app = Application(
+            webdriver.Chrome(ChromeDriverManager().install()),
+            base_url,
+        )
+    else:
+        raise pytest.UsageError("--headless should be true or false")
     yield fix_app
     fix_app.quit()
 
@@ -31,6 +47,8 @@ def fix_auth(app, request):
     app.open_auth_page()
     app.login_page.auth(AuthData(login=user, password=password))
     assert app.login_page.is_auth(), "You are not auth"
+    yield
+    app.login_page.sign_out()
 
 
 def pytest_addoption(parser):
@@ -51,4 +69,11 @@ def pytest_addoption(parser):
         action="store",
         default="o08072006B+",
         help="enter password",
+    ),
+    parser.addoption(
+        "--headless",
+        action="store",
+        default="true",
+        help="enter 'true' if you want run tests in headless mode of browser,\n"
+        "enter 'false' - if not",
     ),
