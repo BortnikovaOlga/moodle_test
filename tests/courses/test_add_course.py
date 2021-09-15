@@ -10,5 +10,5 @@ class TestCourseData:
         6. Check successfully editing
         """
         assert app.nav_bar.open_course_page() == "Добавить курс"
-        app.course_page.edit_general_course_data()
-        assert app.course_page.is_add_course(), "Course not add!"
+        course_full_name = app.course_page.edit_general_course_data()
+        assert app.course_page.is_add_course(course_full_name), "Course not add!"
