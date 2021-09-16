@@ -25,4 +25,10 @@ class NavBarLocators:
         'a[href=\
         "https://qacoursemoodle.innopolis.university/course/edit.php?category=0"]',
     )
+    MENAGE_COURSES_LINK = (
+        By.CSS_SELECTOR,
+        'a[href=\
+        "https://qacoursemoodle.innopolis.university/course/management.php"]',
+    )
+
     MAIN_CONTENT_TITLE = (By.XPATH, '//span[@id="maincontent"]/following-sibling::h2')
