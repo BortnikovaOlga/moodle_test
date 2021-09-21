@@ -22,7 +22,7 @@ class CourseData:
 
     @staticmethod
     def random():
-        full_name = fake.job()
+        full_name = fake.job() + datetime.date.today().isoformat()
         short_name = fake.word()
         summary = fake.text(max_nb_chars=140)
         date_end = fake.date_between(start_date="today", end_date="+2y")

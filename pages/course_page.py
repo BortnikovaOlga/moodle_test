@@ -19,12 +19,12 @@ class CoursePage(BasePage):
         pass
 
     def input_date_start(self, date_start):
-        self.select_value(self.find_date_start_day_select(), date_start.strftime("%d"))
+        self.select_value(self.find_date_start_day_select(), str(date_start.day))
         self.select_value(self.find_date_start_month_select(), str(date_start.month))
         self.select_value(self.find_date_start_year_select(), date_start.strftime("%Y"))
 
     def input_date_end(self, date_end):
-        self.select_value(self.find_date_end_day_select(), date_end.strftime("%d"))
+        self.select_value(self.find_date_end_day_select(), str(date_end.day))
         self.select_value(self.find_date_end_month_select(), str(date_end.month))
         self.select_value(self.find_date_end_year_select(), date_end.strftime("%Y"))
 
