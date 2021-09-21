@@ -1,5 +1,6 @@
 import os.path
 
+import allure
 from selenium.webdriver.remote.webelement import WebElement
 
 from models.person_data import PersonData
@@ -37,12 +38,10 @@ class ProfilePage(BasePage):
         return self.find_element(ProfilePageLocators.CITY_INPUT)
 
     def find_country_select(self) -> WebElement:
-        country_select = self.find_select_element(ProfilePageLocators.COUNTRY_SELECT)
-        return country_select
+        return self.find_select_element(ProfilePageLocators.COUNTRY_SELECT)
 
     def find_timezone_select(self) -> WebElement:
-        country_select = self.find_select_element(ProfilePageLocators.TIME_ZONE_SELECT)
-        return country_select
+        return self.find_select_element(ProfilePageLocators.TIME_ZONE_SELECT)
 
     def find_about_input(self) -> WebElement:
         return self.find_element(ProfilePageLocators.ABOUT_TEXT_AREA)
@@ -101,20 +100,20 @@ class ProfilePage(BasePage):
 
     #  ========================================================================
 
+    @allure.step("ввод персональных данных")
     def edit_general_personal_data(self, person=PersonData()):
         """По умолчанию восстановление валидных настроек."""
-        self.input_login(person.login)  # может не надо ?
+        self.input_login(person.login)
         self.input_firstname(person.firstname)
         self.input_lastname(person.lastname)
         self.input_email(person.email)
         self.select_email_display(person.email_display)
-        # self.input_moodle_net_profile(moodle_net_profile)
         self.input_city(person.city)
         self.select_country(person.country)
         self.select_timezone(person.timezone)
-        # self.input_about(person.comments)
         self.submit_changes()
 
+    @allure.step("загрузка изображения")
     def load_user_picture(self):
         path_file = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -123,6 +122,7 @@ class ProfilePage(BasePage):
         self.input_picture(path_file)
         self.submit_changes()
 
+    @allure.step("проверка что изменения сохранены")
     def is_changed(self, wait_time=10) -> bool:
         # alert_block = self.find_element(ProfilePageLocators.SUCCESS_ALERT)
         breadcrumb_menu = self.ec_find_elements(ProfilePageLocators.BREADCRUMB_MENU)

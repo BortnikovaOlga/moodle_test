@@ -12,6 +12,7 @@ logger = logging.getLogger("moodle")
 
 
 class LoginPage(BasePage):
+    @allure.step("проверить что авторизованы")
     def is_auth(self):
         self.find_element(LoginPageLocators.FORM)
         return len(self.find_elements(LoginPageLocators.USER_BUTTON)) > 0
@@ -48,6 +49,7 @@ class LoginPage(BasePage):
     def is_exit_confirm_button(self):
         return len(self.find_elements(LoginPageLocators.EXIT_CONFIRM))
 
+    @allure.step("проверить сообщение ошибки авторизации")
     def auth_error_text(self) -> str:
         return self.find_element(LoginPageLocators.LOGIN_ERROR).text
 
