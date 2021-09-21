@@ -11,8 +11,8 @@ class LoginPageLocators:
 
     FORM = (By.ID, "page-wrapper")
 
-    USER_BUTTON = (By.ID, "action-menu-toggle-1")  # (By.CLASS_NAME, "userbutton")
+    USER_BUTTON = (By.ID, "action-menu-toggle-1")
     USER_MENU = (By.CLASS_NAME, "usermenu")
 
-    EXIT = (By.ID, "actionmenuaction-6")  # (By.PARTIAL_LINK_TEXT, "logout.php")
+    EXIT = (By.ID, "actionmenuaction-6")
     EXIT_CONFIRM = (By.XPATH, "//button[text()='Выход']")

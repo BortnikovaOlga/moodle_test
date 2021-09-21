@@ -26,10 +26,7 @@ class ProfilePage(BasePage):
         return self.find_element(ProfilePageLocators.EMAIL_INPUT)
 
     def find_email_display_select(self) -> WebElement:
-        email_display = self.find_select_element(
-            ProfilePageLocators.MAIL_DISPLAY_SELECT
-        )
-        return email_display
+        return self.find_select_element(ProfilePageLocators.MAIL_DISPLAY_SELECT)
 
     def find_moodle_net_profile_input(self) -> WebElement:
         return self.find_element(ProfilePageLocators.MOODLE_NET_PROFILE)
@@ -123,7 +120,7 @@ class ProfilePage(BasePage):
         self.submit_changes()
 
     @allure.step("проверка что изменения сохранены")
-    def is_changed(self, wait_time=10) -> bool:
+    def is_changed(self) -> bool:
         # alert_block = self.find_element(ProfilePageLocators.SUCCESS_ALERT)
         breadcrumb_menu = self.ec_find_elements(ProfilePageLocators.BREADCRUMB_MENU)
         return len(breadcrumb_menu) == 2

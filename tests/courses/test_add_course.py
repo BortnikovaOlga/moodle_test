@@ -49,7 +49,7 @@ class TestCourseData:
         2. Auth with valid data = fixture fix_auth
         3. Check auth result
         4. Go to page with editing course data
-        5. Edit basic course data with invalid end date course
+        5. Edit basic course data with empty fullname or shortname
         6. Check that course not add
         """
         assert app.nav_bar.open_add_course_page() == CourseConstants.ADD_COURSE_HEADER

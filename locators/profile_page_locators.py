@@ -35,7 +35,7 @@ class ProfilePageLocators:
     ABOUT_TEXT_AREA = (
         By.ID,
         "id_description_editor",
-    )  # (By.ID, "id_description_editoreditable")
+    )
 
     # USER_PICTURE
     PICTURE_ADD_BUTTON = (By.CSS_SELECTOR, 'a[title = "Добавить..."]')
