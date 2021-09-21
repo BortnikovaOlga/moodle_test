@@ -42,13 +42,26 @@ class NavBar(BasePage):
     def find_add_new_course(self):
         return self.find_element_clickable(NavBarLocators.ADD_NEW_COURSE_LINK)
 
+    def find_menage_courses(self):
+        return self.find_element_clickable(NavBarLocators.MENAGE_COURSES_LINK)
+
     def find_main_content_title(self):
         return self.find_element(NavBarLocators.MAIN_CONTENT_TITLE)
 
-    def open_course_page(self) -> str:
-        self.click_element(self.find_left_menu_button())
+    def expand_left_menu(self):
+        left_menu_button = self.find_left_menu_button()
+        if not left_menu_button.get_attribute("aria-expanded"):
+            self.click_element(left_menu_button)
+
+    def open_add_course_page(self) -> str:
+        self.expand_left_menu()
         self.click_element(self.find_admin_item())
         self.click_element(self.find_nav_tab_courses())
         self.click_element(self.find_add_new_course())
-
         return self.find_main_content_title().text
+
+    def open_menage_course_page(self):
+        self.expand_left_menu()
+        self.click_element(self.find_admin_item())
+        self.click_element(self.find_nav_tab_courses())
+        self.click_element(self.find_menage_courses())
