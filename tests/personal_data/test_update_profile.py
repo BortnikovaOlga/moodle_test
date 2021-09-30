@@ -15,7 +15,7 @@ class TestPersonalData:
         6. Check successfully editing
         """
         app.nav_bar.open_profile_page()
-        app.profile_page.edit_general_personal_data()
+        app.profile_page.edit_general_personal_data(PersonData.random())
         assert app.profile_page.is_changed(), "Personal data not changed!"
 
     def test_load_user_picture(self, app, fix_auth):
