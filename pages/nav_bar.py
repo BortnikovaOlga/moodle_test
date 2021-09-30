@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.remote.webelement import WebElement
 
 from locators.navbar_locators import NavBarLocators
@@ -25,6 +26,7 @@ class NavBar(BasePage):
         self.click_element(self.find_user_menu())
         self.click_element(self.find_user_menu_exit())
 
+    @allure.step("перейти на страницу персональных данных")
     def open_profile_page(self):
         self.click_element(self.find_user_menu())
         self.click_element(self.find_user_menu_preferences())
@@ -53,6 +55,7 @@ class NavBar(BasePage):
         if not left_menu_button.get_attribute("aria-expanded"):
             self.click_element(left_menu_button)
 
+    @allure.step("открыть страницу добавления нового курса")
     def open_add_course_page(self) -> str:
         self.expand_left_menu()
         self.click_element(self.find_admin_item())
@@ -60,6 +63,7 @@ class NavBar(BasePage):
         self.click_element(self.find_add_new_course())
         return self.find_main_content_title().text
 
+    @allure.step("открыть страницу управления курсами")
     def open_menage_course_page(self):
         self.expand_left_menu()
         self.click_element(self.find_admin_item())

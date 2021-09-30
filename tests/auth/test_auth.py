@@ -12,7 +12,8 @@ class TestAuth:
         2. Auth with valid data - fixture fix_auth
         3. Check auth result
         """
-        assert app.login_page.is_auth(), "We are not auth"
+        # assert in fixture fix_auth
+        pass
 
     @pytest.mark.parametrize("field", ["login", "password", None])
     def test_auth_empty_and_invalid_data(self, app, field):

@@ -43,7 +43,6 @@ class TestPersonalData:
         5. Edit basic personal data with empty data
         6. Check editing
         """
-        # assert app.login_page.is_auth(), "You are not auth" переехал в фикстуру ?
         app.nav_bar.open_profile_page()
         data = PersonData()
         setattr(data, field, None)
