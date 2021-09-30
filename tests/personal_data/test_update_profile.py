@@ -12,7 +12,7 @@ class TestPersonalData:
         3. Check auth result
         4. Go to page with editing personal data
         5. Edit basic personal data with valid data
-        6. Check successfully editing
+        6. Check successfully editing profile
         """
         app.nav_bar.open_profile_page()
         app.profile_page.edit_general_personal_data(PersonData.random())
@@ -26,7 +26,7 @@ class TestPersonalData:
         3. Check auth result
         4. Go to page with editing personal data
         5. Load picture data
-        6. Check editing
+        6. Check successfully editing profile
         """
         app.nav_bar.open_profile_page()
         app.profile_page.load_user_picture()
@@ -41,10 +41,10 @@ class TestPersonalData:
         3. Check auth result
         4. Go to page with editing personal data
         5. Edit basic personal data with empty data
-        6. Check editing
+        6. Check - profile not edited
         """
         app.nav_bar.open_profile_page()
         data = PersonData()
         setattr(data, field, None)
         app.profile_page.edit_general_personal_data(data)
-        assert not app.profile_page.is_changed(), "Personal data should not be changed!"
+        assert not app.profile_page.is_changed(), "Personal data is changed!"

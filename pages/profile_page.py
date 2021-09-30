@@ -1,11 +1,16 @@
+import logging
 import os.path
-
+import random
 import allure
 from selenium.webdriver.remote.webelement import WebElement
 
+from log_settings import LOGGING_CONFIG
 from models.person_data import PersonData
 from pages.base_page import BasePage
 from locators.profile_page_locators import ProfilePageLocators
+
+logging.config.dictConfig(LOGGING_CONFIG)
+logger = logging.getLogger("moodle")
 
 
 class ProfilePage(BasePage):
@@ -16,7 +21,7 @@ class ProfilePage(BasePage):
     def find_login_input(self) -> WebElement:
         return self.find_element(ProfilePageLocators.LOGIN_INPUT)
 
-    def find_firstname_input(self):
+    def find_firstname_input(self) -> WebElement:
         return self.find_element(ProfilePageLocators.FIRSTNAME_INPUT)
 
     def find_lastname_input(self) -> WebElement:
@@ -52,7 +57,7 @@ class ProfilePage(BasePage):
     def find_file_input(self) -> WebElement:
         return self.find_element(ProfilePageLocators.FILE_INPUT)
 
-    def find_upload_file_button(self):
+    def find_upload_file_button(self) -> WebElement:
         return self.find_element_clickable(ProfilePageLocators.UPLOAD_FILE_BUTTON)
 
     # == INPUT/SELECT/SUBMIT  ======================================================
@@ -97,10 +102,9 @@ class ProfilePage(BasePage):
 
     #  ========================================================================
 
-    @allure.step("ввод персональных данных")
+    @allure.step("ввести персональные данные")
     def edit_general_personal_data(self, person=PersonData()):
         """По умолчанию восстановление валидных настроек."""
-        self.input_login(person.login)
         self.input_firstname(person.firstname)
         self.input_lastname(person.lastname)
         self.input_email(person.email)
@@ -109,17 +113,21 @@ class ProfilePage(BasePage):
         self.select_country(person.country)
         self.select_timezone(person.timezone)
         self.submit_changes()
+        logger.info(f"Update user profile {person.__repr__()}")
 
-    @allure.step("загрузка изображения")
+    @allure.step("загрузить изображение")
     def load_user_picture(self):
+        image_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "images"
+        )
         path_file = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-            os.path.join("models", "logo.jpg"),
+            image_dir, os.path.join(random.choice(os.listdir(image_dir)))
         )
         self.input_picture(path_file)
         self.submit_changes()
+        logger.info(f"Load user picture from {path_file}")
 
-    @allure.step("проверка что изменения сохранены")
+    @allure.step("проверить что изменения сохранены")
     def is_changed(self) -> bool:
         # alert_block = self.find_element(ProfilePageLocators.SUCCESS_ALERT)
         breadcrumb_menu = self.ec_find_elements(ProfilePageLocators.BREADCRUMB_MENU)

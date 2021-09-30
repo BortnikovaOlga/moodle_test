@@ -8,11 +8,10 @@ class BasePage:
         self.app = app
 
     def find_element(self, locator, wait_time=10):
-        element = WebDriverWait(self.app.driver, wait_time).until(
+        return WebDriverWait(self.app.driver, wait_time).until(
             EC.presence_of_element_located(locator),
             message=f"Can't find element by locator {locator}",
         )
-        return element
 
     def find_element_clickable(self, locator, wait_time=15):
         return WebDriverWait(self.app.driver, wait_time).until(
@@ -25,24 +24,25 @@ class BasePage:
 
     def ec_find_elements(self, locator, wait_time=10):
         """Ищет эелементы с явным ожиданием."""
-        elements = WebDriverWait(self.app.driver, wait_time).until(
+        return WebDriverWait(self.app.driver, wait_time).until(
             EC.presence_of_all_elements_located(locator),
             message=f"Can't find elements by locator {locator}",
         )
-        return elements
 
     def find_select_element(self, locator):
-        select_element = Select(self.find_element(locator))
-        return select_element
+        return Select(self.find_element(locator))
 
-    def select_value(self, select_element, value):
+    @staticmethod
+    def select_value(select_element, value):
         select_element.select_by_value(value)
 
-    def fill_element(self, element, text):
+    @staticmethod
+    def fill_element(element, text):
         element.clear()
         if text:
             element.send_keys(text)
             return element
 
-    def click_element(self, element):
+    @staticmethod
+    def click_element(element):
         element.click()

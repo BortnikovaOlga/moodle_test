@@ -32,13 +32,13 @@ class NavBar(BasePage):
         self.click_element(self.find_user_menu_preferences())
         self.click_element(self.find_edit_profile_link())
 
-    def find_left_menu_button(self):
+    def find_left_menu_button(self) -> WebElement:
         return self.find_element(NavBarLocators.LEFT_MENU_BUTTON)
 
-    def find_admin_item(self):
+    def find_admin_item(self) -> WebElement:
         return self.find_element_clickable(NavBarLocators.LEFT_MENU_ADMIN_ITEM)
 
-    def find_nav_tab_courses(self):
+    def find_nav_tab_courses(self) -> WebElement:
         return self.find_element(NavBarLocators.NAV_TABS_COURSES)
 
     def find_add_new_course(self):
@@ -47,7 +47,7 @@ class NavBar(BasePage):
     def find_menage_courses(self):
         return self.find_element_clickable(NavBarLocators.MENAGE_COURSES_LINK)
 
-    def find_main_content_title(self):
+    def find_main_content_title(self) -> WebElement:
         return self.find_element(NavBarLocators.MAIN_CONTENT_TITLE)
 
     def expand_left_menu(self):
