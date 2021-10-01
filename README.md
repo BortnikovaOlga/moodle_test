@@ -12,14 +12,14 @@
   [selenium](https://selenium-python.readthedocs.io/installation.html),
   [allure-pytest](https://docs.qameta.io/allure/#_pytest),
   [logging](https://docs.python.org/3/library/logging.html).
-3. Автотесты написаны на выборочную функциональность образовательной платформы 'Moodle':
+3. Автотесты написаны на выборочную функциональность образовательной платформы 'Moodle' :
 - авторизация пользователя ( .\tests\auth\test_auth.py ),
 - обновление личной информации пользователя (.\tests\personal_data\test_update_profile.py),
-- добавление нового курса (.tests\courses\test_add_course.py).
-4. Описание тесткейсов (выполняемых шагов и ожидаемого результата) расположены в коде автотестов (*.py файлы) в виде docstring.
+- добавление нового курса (.\tests\courses\test_add_course.py).
+4. Описание тесткейсов (выполняемых шагов и ожидаемого результата) расположены в test*.py файлах в виде docstring.
 5. В проекте используется логгирование, конфигурация в log_settings.py
 6. В проект включена проверка кода линтером [pre-commit](https://pre-commit.com/), настройки .pre-commit-config.yaml
-7. В проект включена проверка выполнения тестов на ресурсе [travis-ci ](https://app.travis-ci.com/BortnikovaOlga/moodle_test), настройки .travis.yml
+7. В проект включена проверка выполнения тестов на ресурсе [travis-ci ](https://app.travis-ci.com/BortnikovaOlga/moodle_test), настройки .travis.yml [инструкция по настройке](https://docs.travis-ci.com/user/tutorial/)
  >
 ## Устаноновка пакета
 1. На компьютере должен быть установлен python 3.9.
@@ -31,8 +31,8 @@
 ## Запуск тестов и вывод отчета в Allure
 1. Для запуска всех тестов выполните команду `pytest`.
 2. Отдельные файлы тестов находятся в папке tests во вложенных папках auth, personal_data, courses.
-   - Для запуска тестов одного файла - выполните команду в папке с файлом `pytest <test_file_name>`.
-   - Для запуска отдельного теста - команда `pytest <test_file_name>::<test_class_name>::<test_method_name>`
+- Для запуска тестов одного файла - выполните команду в папке с файлом `pytest <test_file_name>`.
+- Для запуска отдельного теста - команда `pytest <test_file_name>::<test_class_name>::<test_method_name>`
 3. Для вывода очета о выполненных тестах в Allure, необходимо :
 - установить Allure [инструкция по установке](https://docs.qameta.io/allure/#_get_started) и Java на компьютер
 - выполнить команду `pytest --alluredir=<allure_reports_dir>`

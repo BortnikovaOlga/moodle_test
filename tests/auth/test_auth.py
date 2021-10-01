@@ -8,7 +8,7 @@ class TestAuth:
     def test_auth_valid_data(self, app, fix_auth):
         """
         Steps
-        1. Open main page - fixture app
+        1. Open auth page - fixture fix_auth
         2. Auth with valid data - fixture fix_auth
         3. Check auth result
         """
@@ -19,7 +19,7 @@ class TestAuth:
     def test_auth_empty_and_invalid_data(self, app, field):
         """
         Steps
-        1. Open main page - fixture app
+        1. Open auth page
         2. Auth with empty, invalid data
         3. Check auth result
         """

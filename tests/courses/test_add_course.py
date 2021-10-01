@@ -15,7 +15,7 @@ class TestCourseData:
     def test_input_valid_general_course_data(self, app, fix_auth):
         """
         Steps
-        1. Open auth page  = fixture app
+        1. Open auth page  = fixture fix_auth
         2. Auth with valid data = fixture fix_auth
         3. Check auth result
         4. Go to page with editing course data
@@ -45,7 +45,7 @@ class TestCourseData:
     def test_input_invalid_general_course_data(self, app, fix_auth, field):
         """
         Steps
-        1. Open auth page  = fixture app
+        1. Open auth page  = fixture fix_auth
         2. Auth with valid data = fixture fix_auth
         3. Check auth result
         4. Go to page with editing course data
@@ -67,7 +67,7 @@ class TestCourseData:
     def test_input_invalid_date_end_course(self, app, fix_auth):
         """
         Steps
-        1. Open auth page  = fixture app
+        1. Open auth page  = fix_auth
         2. Auth with valid data = fixture fix_auth
         3. Check auth result
         4. Go to page with editing course data

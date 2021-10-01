@@ -7,7 +7,7 @@ class TestPersonalData:
     def test_input_valid_general_personal_data(self, app, fix_auth):
         """
         Steps
-        1. Open auth page  = fixture app
+        1. Open auth page  = fixture fix_auth
         2. Auth with valid data = fixture fix_auth
         3. Check auth result
         4. Go to page with editing personal data
@@ -21,7 +21,7 @@ class TestPersonalData:
     def test_load_user_picture(self, app, fix_auth):
         """
         Steps
-        1. Open auth page - fixture app
+        1. Open auth page - fixture fix_auth
         2. Auth with valid data - fixture fix_auth
         3. Check auth result
         4. Go to page with editing personal data
@@ -36,7 +36,7 @@ class TestPersonalData:
     def test_personal_empty_data(self, field, app, fix_auth):
         """
         Steps
-        1. Open main page - fixture app
+        1. Open main page - fixture fix_auth
         2. Auth with valid data - fixture fix_auth
         3. Check auth result
         4. Go to page with editing personal data
